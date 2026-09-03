@@ -33,15 +33,15 @@ export default function Countdown({ endDate, large = false }: CountdownProps) {
           { value: timeLeft.seconds, label: "SECONDS" },
         ].map(({ value, label }, i) => (
           <div key={label} className="flex items-start gap-3 sm:gap-5">
-            {i > 0 && <span style={{ color: "#1a56db", fontSize: 28, fontFamily: "var(--font-mono)", lineHeight: "1", marginTop: 4 }}>:</span>}
+            {i > 0 && <span style={{ color: "#8c6cc3", fontSize: 28, fontFamily: "var(--font-mono)", lineHeight: "1", marginTop: 4 }}>:</span>}
             <div className="flex flex-col items-center">
               <div className="flex items-center justify-center rounded-xl px-3 sm:px-5 py-3 sm:py-4"
-                style={{ background: "rgba(26,86,219,0.15)", border: "1px solid rgba(26,86,219,0.3)", minWidth: 64 }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(24px, 4vw, 40px)", fontWeight: 700, color: "#e8edf5", lineHeight: 1 }}>
+                style={{ background: "rgba(140,108,195,0.12)", border: "1px solid rgba(140,108,195,0.28)", minWidth: 64 }}>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(24px, 4vw, 40px)", fontWeight: 700, color: "#fbfbfa", lineHeight: 1 }}>
                   {String(value).padStart(2, "0")}
                 </span>
               </div>
-              <span style={{ color: "#64748b", fontSize: 10, letterSpacing: "0.12em", marginTop: 6, fontFamily: "var(--font-mono)" }}>{label}</span>
+              <span style={{ color: "rgba(251,251,250,0.68)", fontSize: 10, letterSpacing: "0.12em", marginTop: 6, fontFamily: "var(--font-mono)" }}>{label}</span>
             </div>
           </div>
         ))}
@@ -50,7 +50,7 @@ export default function Countdown({ endDate, large = false }: CountdownProps) {
   }
 
   return (
-    <span style={{ fontFamily: "var(--font-mono)", color: "#e8edf5", fontSize: 13 }}>
+    <span style={{ fontFamily: "var(--font-mono)", color: "#fbfbfa", fontSize: 13 }}>
       {String(timeLeft.days).padStart(2, "0")}d {String(timeLeft.hours).padStart(2, "0")}:{String(timeLeft.minutes).padStart(2, "0")}:{String(timeLeft.seconds).padStart(2, "0")}
     </span>
   );

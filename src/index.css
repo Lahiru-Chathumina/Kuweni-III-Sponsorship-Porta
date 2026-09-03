@@ -2,51 +2,65 @@
 @import 'tailwindcss';
 
 @theme inline {
-  --color-navy-950: #040d1f;
-  --color-navy-900: #071227;
-  --color-navy-800: #0d1e3d;
-  --color-navy-700: #142752;
-  --color-navy-600: #1c3566;
-  --color-navy-500: #254480;
-  --color-blue-brand: #1a56db;
-  --color-blue-light: #3b82f6;
-  --color-gold-400: #f0c040;
-  --color-gold-500: #d4a017;
-  --color-gold-600: #b8860b;
+  --color-ink-950: #0e0d0e;
+  --color-ink-900: #151112;
+  --color-ink-800: #251b19;
+  --color-ink-700: #3a2a2c;
+  --color-plum-500: #8c6cc3;
+  --color-plum-600: #755c8e;
+  --color-coral-500: #bf5d7b;
+  --color-copper-500: #7e5239;
+  --color-teal-800: #0e2d40;
+  --color-ivory-50: #fbfbfa;
+  --color-ivory-100: #f4f1ee;
 }
 
 :root {
-  --background: #040d1f;
-  --foreground: #e8edf5;
-  --card: #0d1e3d;
-  --card-foreground: #e8edf5;
-  --primary: #1a56db;
-  --primary-foreground: #ffffff;
-  --secondary: #142752;
-  --secondary-foreground: #94a3b8;
-  --muted: #0d1e3d;
-  --muted-foreground: #64748b;
-  --accent: #d4a017;
-  --accent-foreground: #040d1f;
+  --background: #0e0d0e;
+  --background-alt: #251b19;
+  --card: #1b1717;
+  --foreground: #fbfbfa;
+  --muted: #f0ece8;
+  --muted-foreground: rgba(251, 251, 250, 0.68);
+  --primary: #8c6cc3;
+  --primary-strong: #755c8e;
+  --secondary: #bf5d7b;
+  --secondary-strong: #7e5239;
+  --accent: #8c6cc3;
+  --accent-foreground: #fbfbfa;
   --border: rgba(255,255,255,0.08);
-  --ring: #1a56db;
-  --radius: 0.5rem;
+  --ring: #8c6cc3;
+  --radius: 0.75rem;
   --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-serif: 'DM Serif Display', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
 html, body, #root {
-  height: 100%;
+  min-height: 100%;
   font-family: var(--font-sans);
-  background-color: var(--background);
+  background:
+    radial-gradient(circle at top, rgba(140, 108, 195, 0.18), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(191, 93, 123, 0.12), transparent 28%),
+    var(--background);
   color: var(--foreground);
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.15) transparent;
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-attachment: fixed;
 }
-*::-webkit-scrollbar { width: 4px; height: 4px; }
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140,108,195,0.5) transparent;
+}
+*::-webkit-scrollbar { width: 6px; height: 6px; }
 *::-webkit-scrollbar-track { background: transparent; }
-*::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+*::-webkit-scrollbar-thumb { background: rgba(140,108,195,0.45); border-radius: 999px; }
+::selection {
+  background: rgba(140,108,195,0.35);
+  color: #fbfbfa;
+}
