@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useState } from "react";
 import { MOCK_LOTS } from "../data/mock";
 import { formatCurrency } from "../data/mock";
 import StatusBadge from "../components/StatusBadge";
@@ -20,9 +22,59 @@ const HOW_IT_WORKS = [
   { step: "04", title: "Win & Contract", desc: "Winning bidders proceed through a structured term sheet and contract workflow." },
 ];
 
+const HERO_PARTICLES = [
+  { x: 7, y: 22, size: 2, delay: 0.2 }, { x: 14, y: 67, size: 3, delay: 1.4 },
+  { x: 22, y: 38, size: 2, delay: 2.2 }, { x: 31, y: 77, size: 2, delay: 0.8 },
+  { x: 39, y: 18, size: 3, delay: 2.8 }, { x: 48, y: 64, size: 2, delay: 1.1 },
+  { x: 57, y: 28, size: 2, delay: 2.4 }, { x: 65, y: 74, size: 3, delay: 0.4 },
+  { x: 74, y: 16, size: 2, delay: 1.8 }, { x: 83, y: 51, size: 2, delay: 2.9 },
+  { x: 91, y: 30, size: 3, delay: 1.2 }, { x: 95, y: 80, size: 2, delay: 2.1 },
+];
+
+const NETWORK_NODES = [
+  { x: 8, y: 32 }, { x: 19, y: 58 }, { x: 31, y: 21 }, { x: 42, y: 70 },
+  { x: 55, y: 35 }, { x: 67, y: 17 }, { x: 77, y: 62 }, { x: 90, y: 38 },
+];
+
+const NETWORK_LINES = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 4], [4, 5], [4, 6], [5, 7], [6, 7]];
+
+function AnimatedStat({ label, value, prefix = "", suffix = "" }: { label: string; value: number; prefix?: string; suffix?: string }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const duration = 1800;
+    const start = performance.now();
+    let frame = 0;
+    const animate = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      setCount(Math.round(value * (1 - Math.pow(1 - progress, 3))));
+      if (progress < 1) frame = requestAnimationFrame(animate);
+    };
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [value]);
+
+  return (
+    <div className="hero-stat">
+      <span className="hero-stat-label">{label}</span>
+      <span className="hero-stat-value">{prefix}{count.toLocaleString()}{suffix}</span>
+    </div>
+  );
+}
+
 export default function Landing() {
   const featuredLots = MOCK_LOTS.slice(0, 3);
   const backgroundImage = "url('https://static.wixstatic.com/media/9ee70e_d1c9e99ef4f84ac98bf794f2bfb47c7a~mv2.jpg/v1/fill/w_1880,h_1058,enc_auto/file.jpeg')";
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const smoothX = useSpring(pointerX, { stiffness: 40, damping: 20 });
+  const smoothY = useSpring(pointerY, { stiffness: 40, damping: 20 });
+
+  const handleHeroPointer = (event: React.PointerEvent<HTMLElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - bounds.left) / bounds.width - 0.5);
+    pointerY.set((event.clientY - bounds.top) / bounds.height - 0.5);
+  };
 
   return (
     <div
@@ -53,12 +105,26 @@ export default function Landing() {
         </div>
       </nav>
 
-      <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-24 overflow-hidden">
+      <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-24 overflow-hidden hero-section" onPointerMove={handleHeroPointer} onPointerLeave={() => { pointerX.set(0); pointerY.set(0); }}>
         <div className="absolute inset-0 pointer-events-none">
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at center, rgba(140,108,195,0.18) 0%, rgba(14,13,14,0.1) 35%, rgba(14,13,14,0.9) 100%)" }} />
           <div style={{ position: "absolute", top: "16%", left: "50%", transform: "translateX(-50%)", width: "780px", height: "780px", background: "radial-gradient(circle, rgba(140,108,195,0.18) 0%, rgba(140,108,195,0.05) 32%, transparent 72%)" }} />
           <div style={{ position: "absolute", top: "60%", right: "8%", width: "260px", height: "260px", background: "radial-gradient(circle, rgba(191,93,123,0.12) 0%, transparent 72%)" }} />
           <div style={{ position: "absolute", bottom: "12%", left: "12%", width: "180px", height: "180px", background: "radial-gradient(circle, rgba(126,82,57,0.12) 0%, transparent 70%)" }} />
+          <motion.div className="hero-aurora" style={{ x: smoothX, y: smoothY }} animate={{ rotate: [0, 4, -3, 0], scale: [1, 1.06, 0.98, 1] }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }} />
+          <motion.div className="hero-network" style={{ x: smoothX, y: smoothY }}>
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              {NETWORK_LINES.map(([from, to]) => <line key={`${from}-${to}`} x1={NETWORK_NODES[from].x} y1={NETWORK_NODES[from].y} x2={NETWORK_NODES[to].x} y2={NETWORK_NODES[to].y} />)}
+              {NETWORK_NODES.map((node, index) => <circle key={index} cx={node.x} cy={node.y} r="0.7" />)}
+            </svg>
+          </motion.div>
+          {HERO_PARTICLES.map((particle, index) => (
+            <motion.span key={index} className="hero-particle" style={{ left: `${particle.x}%`, top: `${particle.y}%`, width: particle.size, height: particle.size, x: smoothX, y: smoothY }} animate={{ opacity: [0.15, 0.55, 0.15], y: [0, -12, 0] }} transition={{ duration: 6 + particle.delay, delay: particle.delay, repeat: Infinity, ease: "easeInOut" }} />
+          ))}
+          <div className="hero-activity hero-activity-one"><span>Bid Received</span><strong>+ Rs. 2.5M</strong></div>
+          <div className="hero-activity hero-activity-two"><span>New Sponsor</span><strong>Verified</strong></div>
+          <div className="hero-activity hero-activity-three"><span>Funding Increased</span><strong>+18.4%</strong></div>
+          <div className="hero-scan-line" />
         </div>
 
         <div className="relative z-10 flex flex-col items-center justify-center">
@@ -81,16 +147,22 @@ export default function Landing() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link to="/lots" className="px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
+            <Link to="/lots" className="hero-action px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
               style={{ background: "linear-gradient(135deg, #8c6cc3, #755c8e)", color: "#fbfbfa", boxShadow: "0 10px 32px rgba(140,108,195,0.4)", minWidth: 250 }}>
               Explore Sponsorships
             </Link>
-            <Link to="/login" className="px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:bg-white/10"
+            <Link to="/login" className="hero-action px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:bg-white/10"
               style={{ border: "1px solid rgba(255,255,255,0.12)", background: "rgba(12,12,13,0.4)", color: "#fbfbfa", minWidth: 220 }}>
               Corporate Login
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="hero-stat-band" aria-label="Platform statistics">
+        <AnimatedStat label="Active Sponsors" value={5} />
+        <AnimatedStat label="Open Opportunities" value={6} />
+        <AnimatedStat label="Total Bid Value" value={37350000} prefix="Rs. " />
       </section>
 
       <section className="px-6 sm:px-12 py-24" style={{ background: "rgba(37,27,25,0.9)" }}>

@@ -64,3 +64,110 @@ body {
   background: rgba(140,108,195,0.35);
   color: #fbfbfa;
 }
+
+.hero-section {
+  isolation: isolate;
+}
+
+.hero-aurora {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  width: min(72vw, 860px);
+  height: min(46vw, 560px);
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(140, 108, 195, 0.2) 0%, rgba(140, 108, 195, 0.08) 38%, transparent 72%);
+  filter: blur(30px);
+  opacity: 0.72;
+  will-change: transform;
+}
+
+.hero-network {
+  position: absolute;
+  inset: 5% 2% 8%;
+  opacity: 0.22;
+  will-change: transform;
+}
+.hero-network svg { width: 100%; height: 100%; overflow: visible; }
+.hero-network line { stroke: rgba(140, 108, 195, 0.48); stroke-width: 0.12; stroke-dasharray: 1.2 1.8; animation: network-drift 14s linear infinite; }
+.hero-network circle { fill: #8c6cc3; filter: drop-shadow(0 0 3px rgba(140, 108, 195, 0.8)); animation: node-pulse 4.5s ease-in-out infinite; }
+.hero-network circle:nth-of-type(2n) { animation-delay: 1.5s; }
+
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #c9b8ec;
+  box-shadow: 0 0 9px rgba(140, 108, 195, 0.85);
+  will-change: transform, opacity;
+}
+
+.hero-activity {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 148px;
+  padding: 11px 14px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(20, 16, 25, 0.28);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(10px);
+  color: rgba(251, 251, 250, 0.55);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  animation: activity-float 10s ease-in-out infinite;
+}
+.hero-activity strong { color: rgba(191, 93, 123, 0.7); font-size: 10px; font-weight: 500; }
+.hero-activity-two { top: 31%; right: 6%; animation-delay: -3s; }
+.hero-activity-one { top: 55%; left: 6%; animation-delay: -6s; }
+.hero-activity-three { right: 11%; bottom: 15%; animation-delay: -1.5s; }
+
+.hero-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 157, 237, 0.2), transparent);
+  box-shadow: 0 0 12px rgba(140, 108, 195, 0.28);
+  animation: scan-line 13s ease-in-out infinite;
+}
+
+.hero-action { position: relative; overflow: hidden; transition: transform 240ms ease, box-shadow 240ms ease, opacity 200ms ease; }
+.hero-action:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 14px 38px rgba(140, 108, 195, 0.48) !important; }
+
+.hero-stat-band {
+  display: flex;
+  justify-content: center;
+  gap: clamp(40px, 10vw, 150px);
+  padding: 25px 24px 27px;
+  background: rgba(14, 13, 14, 0.72);
+  border-top: 1px solid rgba(140, 108, 195, 0.13);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.hero-stat { display: flex; flex-direction: column; gap: 7px; min-width: 150px; text-align: center; }
+.hero-stat-label { color: rgba(251, 251, 250, 0.52); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+.hero-stat-value { color: #c8b5ed; font-family: var(--font-mono); font-size: clamp(16px, 2vw, 22px); font-weight: 600; }
+
+@keyframes network-drift { to { stroke-dashoffset: -12; } }
+@keyframes node-pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.9; } }
+@keyframes activity-float { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -9px, 0); } }
+@keyframes scan-line { 0%, 68% { transform: translateY(0); opacity: 0; } 72% { opacity: 0.7; } 92%, 100% { transform: translateY(115vh); opacity: 0; } }
+
+@media (max-width: 640px) {
+  .hero-activity { transform: scale(0.82); transform-origin: center; }
+  .hero-activity-one { left: -20px; }
+  .hero-activity-two { right: -25px; }
+  .hero-activity-three { right: -18px; }
+  .hero-stat-band { gap: 16px; padding-inline: 12px; }
+  .hero-stat { min-width: 0; flex: 1; }
+  .hero-stat-label { font-size: 8px; letter-spacing: 0.06em; }
+  .hero-stat-value { font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-activity, .hero-scan-line, .hero-network line, .hero-network circle { animation: none; }
+}
