@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme inline {
+  --color-navy-950: #040d1f;
+  --color-navy-900: #071227;
+  --color-navy-800: #0d1e3d;
+  --color-navy-700: #142752;
+  --color-navy-600: #1c3566;
+  --color-navy-500: #254480;
+  --color-blue-brand: #1a56db;
+  --color-blue-light: #3b82f6;
+  --color-gold-400: #f0c040;
+  --color-gold-500: #d4a017;
+  --color-gold-600: #b8860b;
+}
+
+:root {
+  --background: #040d1f;
+  --foreground: #e8edf5;
+  --card: #0d1e3d;
+  --card-foreground: #e8edf5;
+  --primary: #1a56db;
+  --primary-foreground: #ffffff;
+  --secondary: #142752;
+  --secondary-foreground: #94a3b8;
+  --muted: #0d1e3d;
+  --muted-foreground: #64748b;
+  --accent: #d4a017;
+  --accent-foreground: #040d1f;
+  --border: rgba(255,255,255,0.08);
+  --ring: #1a56db;
+  --radius: 0.5rem;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+*::-webkit-scrollbar { width: 4px; height: 4px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
