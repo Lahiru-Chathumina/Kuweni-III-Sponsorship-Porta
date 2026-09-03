@@ -1,0 +1,10 @@
+{
+  "description": "A premium digital platform for corporate sponsorship bidding, enabling secure auctions and streamlined management for businesses seeking sponsorship opportunities.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
