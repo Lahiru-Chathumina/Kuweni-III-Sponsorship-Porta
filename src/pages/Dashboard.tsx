@@ -120,7 +120,7 @@ export default function Dashboard() {
                 {bids.slice(0, 5).map((bid, i) => (
                   <tr key={bid.id} className="transition-colors hover:bg-white/2" style={{ borderBottom: i < 4 ? "1px solid rgba(255,255,255,0.04)" : "none" }}>
                     <td className="px-6 py-3" style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "#94a3b8" }}>{bid.id}</td>
-                    <td className="px-6 py-3" style={{ color: "#e8edf5", fontSize: 13 }}>Main Event Partner</td>
+                    <td className="px-6 py-3" style={{ color: "#e8edf5", fontSize: 13 }}>Main Partner</td>
                     <td className="px-6 py-3" style={{ fontFamily: "var(--font-mono)", color: "#d4a017", fontWeight: 600 }}>{formatCurrency(bid.amount)}</td>
                     <td className="px-6 py-3" style={{ color: "#64748b", fontSize: 12 }}>
                       {new Date(bid.timestamp).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}

@@ -74,7 +74,7 @@ export default function LotManagement() {
             </div>
             <form onSubmit={handleSave} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <Field label="LOT NAME" id="name" value={form.name} placeholder="e.g. Main Event Partner" onChange={v => update("name", v)} />
+                <Field label="LOT NAME" id="name" value={form.name} placeholder="e.g. Main Partner" onChange={v => update("name", v)} />
                 <div>
                   <label style={{ display: "block", color: "#94a3b8", fontSize: 11, fontFamily: "var(--font-mono)", letterSpacing: "0.08em", marginBottom: 6 }}>CATEGORY</label>
                   <select value={form.category} onChange={e => update("category", e.target.value)}

@@ -29,7 +29,7 @@ export default function TermSheet() {
       <div className="p-6 sm:p-8 max-w-5xl mx-auto">
         <div className="mb-8">
           <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 28, fontWeight: 700, color: "#e8edf5", marginBottom: 4 }}>Term Sheet & Contract Generator</h2>
-          <p style={{ color: "#64748b", fontSize: 14 }}>Post-auction contract workflow for Main Event Partner</p>
+          <p style={{ color: "#64748b", fontSize: 14 }}>Post-auction contract workflow for Main Partner</p>
         </div>
 
         {/* Workflow Progress */}

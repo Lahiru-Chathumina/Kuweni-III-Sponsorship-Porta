@@ -39,7 +39,7 @@ const endDate6 = new Date(NOW.getTime() + 10 * 24 * 60 * 60 * 1000).toISOString(
 export const MOCK_LOTS: SponsorshipLot[] = [
   {
     id: "lot-001",
-    name: "Main Event Partner",
+    name: "Main Partner",
     category: "Title Sponsor",
     description: "Exclusive title sponsorship of the Kuweni III event with maximum brand visibility across all event touchpoints, including naming rights, stage branding, and priority positioning in all media assets.",
     image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=450&fit=crop&auto=format",
@@ -233,7 +233,7 @@ export const MOCK_AUDIT_LOGS: AuditLog[] = [
   { id: "log-008", timestamp: "2026-09-02T16:44:22", userId: "usr-004", company: "Apex Beverages", action: "Bid Submitted — LOT-001 — Rs. 9,500,000", ipAddress: "175.101.xx.xx", status: "success" },
   { id: "log-009", timestamp: "2026-09-02T14:20:00", userId: "usr-005", company: "Ridgeline Capital", action: "Login Attempt — MFA Failed", ipAddress: "198.51.xx.xx", status: "failed" },
   { id: "log-010", timestamp: "2026-09-02T11:05:44", userId: "admin", company: "System Admin", action: "Company Verified — Ceylon Digital Media", ipAddress: "10.0.xx.xx", status: "success" },
-  { id: "log-011", timestamp: "2026-09-01T17:30:00", userId: "admin", company: "System Admin", action: "Auction Started — LOT-001 Main Event Partner", ipAddress: "10.0.xx.xx", status: "success" },
+  { id: "log-011", timestamp: "2026-09-01T17:30:00", userId: "admin", company: "System Admin", action: "Auction Started — LOT-001 Main Partner", ipAddress: "10.0.xx.xx", status: "success" },
   { id: "log-012", timestamp: "2026-09-01T16:45:00", userId: "admin", company: "System Admin", action: "Role Updated — usr-001 — Verified Buyer", ipAddress: "10.0.xx.xx", status: "success" },
 ];
 
@@ -290,8 +290,8 @@ export const MOCK_CONTRACT: Contract = {
 };
 
 export const MOCK_NOTIFICATIONS: Notification[] = [
-  { id: "notif-001", userId: "usr-001", type: "bid_update", title: "Your bid has been outbid", message: "Company B has placed a higher bid of Rs. 12,000,000 on Main Event Partner.", timestamp: "2026-09-03T10:27:00", read: false },
-  { id: "notif-002", userId: "usr-001", type: "proxy_activated", title: "Proxy Bid Activated", message: "Your proxy bid automatically placed Rs. 12,500,000 on Main Event Partner.", timestamp: "2026-09-03T10:28:05", read: false },
+  { id: "notif-001", userId: "usr-001", type: "bid_update", title: "Your bid has been outbid", message: "Company B has placed a higher bid of Rs. 12,000,000 on Main Partner.", timestamp: "2026-09-03T10:27:00", read: false },
+  { id: "notif-002", userId: "usr-001", type: "proxy_activated", title: "Proxy Bid Activated", message: "Your proxy bid automatically placed Rs. 12,500,000 on Main Partner.", timestamp: "2026-09-03T10:28:05", read: false },
   { id: "notif-003", userId: "usr-001", type: "auction_extended", title: "Auction Extended — Anti-Sniping", message: "A valid bid was received in the final 60 minutes. Auction extended by 15 minutes.", timestamp: "2026-09-03T09:41:33", read: true },
   { id: "notif-004", userId: "usr-001", type: "verification", title: "Account Verified", message: "Your corporate account has been verified. You can now place bids.", timestamp: "2026-09-01T12:00:00", read: true },
 ];

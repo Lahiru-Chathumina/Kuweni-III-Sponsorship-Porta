@@ -28,7 +28,7 @@ export default function ExecutivePreviewRoom() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 28, fontWeight: 700, color: "#e8edf5", marginBottom: 4 }}>Executive Preview Room</h2>
-            <p style={{ color: "#64748b", fontSize: 14 }}>Confidential sponsorship materials — Main Event Partner</p>
+            <p style={{ color: "#64748b", fontSize: 14 }}>Confidential sponsorship materials — Main Partner</p>
           </div>
           <div className="flex items-center gap-2 px-4 py-2 rounded-xl" style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)" }}>
             <span style={{ color: "#ef4444", fontSize: 12 }}>🔒</span>
